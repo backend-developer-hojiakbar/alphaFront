@@ -1,6 +1,6 @@
 // src/services/apiService.ts
 
-const API_BASE_URL = 'http://printapi.cdcgroup.uz/api';
+const API_BASE_URL = 'https://printapi.cdcgroup.uz/api';
 
 const getAuthToken = () => {
     return localStorage.getItem('accessToken');
