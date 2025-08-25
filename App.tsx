@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import React, { useState, useCallback, useEffect } from 'react';
 import { Product, FormState, CalculationResult, ChatMessage as ChatMessageType, Template, User, PriceList, Subscription, TariffPlan, Material, PromoCode, AuditLogEntry, Order } from './types';
 import Header from './components/Header';
@@ -198,6 +200,9 @@ const App: React.FC = () => {
     setIsLoading(true);
     setError(null);
     setResult(null);
+    
+    console.log("Calculating cost with price list state:", priceList);
+
     try {
       const priceListString = formatPriceListForPrompt(priceList.variants, products, materials);
       const apiResult = await calculatePrintCost({ ...formState, productType: selectedProduct.name }, priceListString, products);
@@ -226,6 +231,8 @@ const App: React.FC = () => {
         isLoading: true,
     };
     setChatMessages(prev => [...prev, loadingMessage]);
+
+    console.log("Sending message to AI with price list state:", priceList);
 
     try {
         const priceListString = formatPriceListForPrompt(priceList.variants, products, materials);
